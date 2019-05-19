@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 def output(text1, text2)
-  text1+" "+text2
+  text1 + ' ' + text2
 end
-text1='Hello'
-text2='World'
+text1 = 'Hello'
+text2 = 'World'
 puts output(text1, text2)
-def word(word, n)
-  word[n]
+def word(word, position)
+  word[position]
 end
 var = 'hello'
 
@@ -13,8 +15,8 @@ puts word(var, 0)
 puts word(var, 1)
 puts word(var, -1)
 
-def true_not_true(n)
-  if n > 0 and 5 > n
+def true_not_true(number)
+  if number.positive? && number < 5
     'True'
   else
     'False'
@@ -27,18 +29,17 @@ puts true_not_true(-3)
 puts true_not_true(2)
 
 def where_min(min)
-  if min >=0 and min < 60
-    if min >=0 and min <= 15
-      "first"
-    elsif min >= 16 and min <=30
-      "second"
-    elsif min >= 31 and min <=45
-      "third"
-    else
-      "forth"
-    end
+  case min
+  when 0..15
+    'first'
+  when 16..30
+    'second'
+  when 31..45
+    'third'
+  when 46..59
+    'forth'
   else
-    "Number is not in range 0 - 59"
+    'Number is not in range 0 - 59'
   end
 end
 
@@ -49,10 +50,10 @@ puts where_min(46)
 puts where_min(70)
 
 def leap_year(year)
-  if (year % 4 == 0 and year % 100 != 0) or year % 400 == 0
-    "Leap year"
+  if ((year % 4).zero? && (year % 100).nonzero?) || (year % 400).zero?
+    'Leap year'
   else
-    "Not leap year"
+    'Not leap year'
   end
 end
 
@@ -75,21 +76,19 @@ def array_sum(array_of_numbers = [], from = 0)
     sum += num
   end
   sum
-
-
 end
 
 def sum_equality(string_of_numbers)
   new_string = string_of_numbers.to_s
   array_of_numbers = new_string.split('')
-  first_sum = array_sum( array_of_numbers)
-  second_sum = array_sum( array_of_numbers, 3)
+  first_sum = array_sum(array_of_numbers)
+  second_sum = array_sum(array_of_numbers, 3)
   if first_sum == second_sum
-    "Equal"
+    'Equal'
   else
-    "Not equal"
+    'Not equal'
   end
-
 end
 
-puts sum_equality(383383)
+puts sum_equality(383_385)
+puts sum_equality(383_383)
